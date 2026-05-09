@@ -5,6 +5,11 @@
     box-sizing: border-box;
     font-family: 'Merriweather Sans', sans-serif;
     }
+
+    html, body {
+        height: 100vh;
+        overflow: hidden;
+    }
  
     .wrapper
     {
@@ -14,6 +19,7 @@
      background-image: url("https://images.pexels.com/photos/209831/pexels-photo-209831.jpeg?cs=srgb&dl=pexels-pixabay-209831.jpg&fm=jpgF");
      background-repeat: no-repeat;
      background-size: cover;
+     overflow: auto;
     }
 
     h1 {
