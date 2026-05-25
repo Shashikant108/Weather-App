@@ -181,10 +181,26 @@ function getLocation(){
           userInfoContainer.classList.add("active");
           renderForecastForDate(data.city, forecastItems, dateValue);
         }
-      catch(err) {
-        loadingScreen.classList.remove("active");
-        alert("Unable to fetch weather. " + err.message);
-      }
+catch(err) {
+  loadingScreen.classList.remove("active");
+
+  userInfoContainer.classList.add("active");
+
+  document.querySelector("[data-cityName]").innerText = "Undefined";
+
+  document.querySelector("[data-countryIcon]").style.display = "none";
+  document.querySelector("[data-weatherIcon]").style.display = "none";
+
+  document.querySelector("[data-weatherDesc]").innerText = "City not found";
+
+  document.querySelector("[data-temp]").innerText = "-- °C";
+  document.querySelector("[data-windspeed]").innerText = "--";
+  document.querySelector("[data-humidity]").innerText = "--";
+  document.querySelector("[data-cloudiness]").innerText = "--";
+  document.querySelector("[data-weatherDate]").innerText = "";
+
+  clearForecastItems();
+}
     }
 
     function renderForecastForDate(city, forecastItems, selectedDate) {
