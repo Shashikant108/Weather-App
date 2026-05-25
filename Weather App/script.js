@@ -29,6 +29,10 @@ function switchTab(newTab){
         oldTab=newTab;
         oldTab.classList.add("current-tab");
 
+        // yaha add karo
+        searchInput.value = "";
+        searchDate.value = "";
+
         if(!searchForm.classList.contains("active")){
             userInfoContainer.classList.remove("active");
             grantAccessContainer.classList.remove("active");
@@ -154,13 +158,17 @@ function getLocation(){
        grantAccessContainer.classList.remove("active");
 
       try {
-        if (dateValue) {
           const response = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_KEY}&units=metric`
           );
 
           if (!response.ok) throw new Error("City not found");
           const data = await response.json();
+
+          if (!dateValue) {
+            dateValue = data.list[0].dt_txt.split(" ")[0];
+          }
+
           const forecastItems = data.list.filter((item) => item.dt_txt.startsWith(dateValue));
 
           if (forecastItems.length === 0) {
@@ -172,17 +180,6 @@ function getLocation(){
           loadingScreen.classList.remove("active");
           userInfoContainer.classList.add("active");
           renderForecastForDate(data.city, forecastItems, dateValue);
-        } else {
-          const response = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric`
-          );
-
-          if (!response.ok) throw new Error("City not found");
-          const data = await response.json();
-          loadingScreen.classList.remove("active");
-          userInfoContainer.classList.add("active");
-          renderWeatherInfo(data);
-        }
         }
       catch(err) {
         loadingScreen.classList.remove("active");
