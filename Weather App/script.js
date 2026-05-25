@@ -111,8 +111,8 @@ cloudiness.innerText = `${weatherInfo?.clouds?.all}%`;
 
     if (selectedDate || weatherInfo?.dt_txt) {
       const dateText = selectedDate || weatherInfo.dt_txt.split(" ")[0];
-      weatherDate.innerText = `Date: ${dateText}`;
-      weatherDate.style.display = "block";
+    //   weatherDate.innerText = `Date: ${dateText}`;
+    //   weatherDate.style.display = "block";
     } else {
       weatherDate.innerText = "";
       weatherDate.style.display = "none";
